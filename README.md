@@ -1,4 +1,5 @@
  **weightedarrays**
+Optimized for simplicity of use.
 
 To use this library you need to implement the Value interface.
 ```
@@ -26,3 +27,5 @@ To retrieve a weighted value you call
 ```
  value =: items.Random()
 ```
+
+

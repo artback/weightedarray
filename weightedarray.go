@@ -15,10 +15,7 @@ type Value interface {
 }
 type Values []Value
 
-func (values Values) Random() interface{} {
-	sort.Slice(values, func(i, j int) bool {
-		return values[i].GetWeight() < values[j].GetWeight()
-	})
+func (values Values) getRandomIndex() int {
 	totals := make([]int, len(values))
 	runningTotal := 0
 	for i, v := range values {
@@ -26,7 +23,15 @@ func (values Values) Random() interface{} {
 		totals[i] = runningTotal
 	}
 	r := rand.Intn(runningTotal) + 1
-	i := sort.SearchInts(totals, r)
-	return values[i]
+	return sort.SearchInts(totals, r)
+}
+func (values Values) sort() {
+	sort.Slice(values, func(i, j int) bool {
+		return values[i].GetWeight() < values[j].GetWeight()
+	})
+}
 
+func (values Values) Random() interface{} {
+	values.sort()
+	return values[values.getRandomIndex()]
 }

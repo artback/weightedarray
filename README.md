@@ -10,7 +10,8 @@ type Fruit struct {
 }
    
 func (f Fruit) GetWeight() float64 {  
- return Weight}  
+ return f.Weight
+ }  
  
 items := weightedarray.Values{  
  &Fruit{Name: "Banana", Weight: 1}, 
